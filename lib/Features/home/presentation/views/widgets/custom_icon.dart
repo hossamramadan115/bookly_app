@@ -9,7 +9,10 @@ class CustomIcon extends StatelessWidget {
     return IconButton(
       color: Colors.white,
       onPressed: onPressed,
-      icon: Icon(icon),
+      icon: Icon(
+        icon,
+        size: 22,
+      ),
     );
   }
 }

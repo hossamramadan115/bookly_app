@@ -16,6 +16,7 @@ class BooklyApp extends StatelessWidget {
       routerConfig: AppRouters.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
+        appBarTheme: AppBarTheme(color: kPrimaryColor),
         scaffoldBackgroundColor: kPrimaryColor,
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
       ),
@@ -25,4 +26,3 @@ class BooklyApp extends StatelessWidget {
 
 // https://github.com/tharwatsamy/my_bookly
 
-// Gilda Display | font
