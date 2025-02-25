@@ -4,6 +4,7 @@ import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'action_box.dart';
 import 'custom_book_details_app_bar.dart';
+import 'similar_books_list_view.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key});
@@ -21,7 +22,7 @@ class BookDetailsViewBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: width * .2),
             child: const CustomBookImage(),
           ),
-          const SizedBox(height: 43),
+          const SizedBox(height: 30),
           Text(
             'The Jungle Book',
             style: Styles.textstyle30.copyWith(
@@ -41,7 +42,15 @@ class BookDetailsViewBody extends StatelessWidget {
           ),
           const SizedBox(height: 37),
           const ActionBox(),
-          const SizedBox(height: 18),
+          const SizedBox(height: 50),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text('You can also like',
+                style:
+                    Styles.textstyle14.copyWith(fontWeight: FontWeight.w600)),
+          ),
+          const SizedBox(height: 16),
+          const SimilarBooksListView(),
         ],
       ),
     );
