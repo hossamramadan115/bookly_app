@@ -1,9 +1,7 @@
 import 'package:bookly_app/Features/home/data/model/book_model/book_model.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:bookly_app/core/utils/app_routers.dart';
-import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -56,7 +54,10 @@ class BookListViewItem extends StatelessWidget {
                           style: Styles.textstyle20,
                         ),
                         const Spacer(),
-                        const BookRating(),
+                        BookRating(
+                          rating: 0,
+                          count: 0,
+                        ),
                       ],
                     )
                   ],

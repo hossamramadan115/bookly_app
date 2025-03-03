@@ -19,13 +19,15 @@ class ServerFailuer extends Failuer {
 
       case DioExceptionType.receiveTimeout:
         return ServerFailuer('connection timeOut');
-        
+
       case DioExceptionType.badCertificate:
         return ServerFailuer('Bad Certificate');
 
       case DioExceptionType.badResponse:
         return ServerFailuer.fromBadResponse(
-            dioException.response!.statusCode!, dioException.response!.data);
+          dioException.response!.statusCode!,
+          dioException.response!.data,
+        );
       case DioExceptionType.cancel:
         return ServerFailuer('Request to api srver was cancelled');
 
