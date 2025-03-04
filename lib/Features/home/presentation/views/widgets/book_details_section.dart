@@ -1,3 +1,4 @@
+import 'package:bookly_app/Features/home/data/model/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
@@ -6,7 +7,9 @@ import 'book_rating.dart';
 import 'custom_book_image.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +19,13 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .2),
-          child: const CustomBookImage(
-          imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/JPEG_example_flower.jpg',
+          child: CustomBookImage(
+            imageUrl: bookModel.volumeInfo.imageLinks.thumbnail,
           ),
         ),
         const SizedBox(height: 30),
         Text(
-          'The Jungle Book',
+          bookModel.volumeInfo.title!,
           style: Styles.textstyle30.copyWith(
             fontFamily: 'PlayfairDisplay',
           ),
@@ -30,7 +33,7 @@ class BookDetailsSection extends StatelessWidget {
         const SizedBox(height: 6),
         Opacity(
           opacity: .7,
-          child: Text('Rudyard Kipling',
+          child: Text(bookModel.volumeInfo.authors![0],
               style: Styles.textStyle18.copyWith(fontStyle: FontStyle.italic)),
         ),
         const SizedBox(height: 18),
@@ -40,7 +43,9 @@ class BookDetailsSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
         ),
         const SizedBox(height: 37),
-        const ActionBox(),
+         ActionBox(
+          bookModel: bookModel,
+         ),
       ],
     );
   }
