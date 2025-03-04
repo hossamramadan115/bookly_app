@@ -31,7 +31,29 @@ class HomeRepoImple implements HomeRepo {
   @override
   Future<Either<Failuer, List<BookModel>>> fetchFeaturedBooks() async {
     try {
-      var data = await apiService.get(endPoint: 'volumes?q=programming');
+      var data = await apiService.get(
+          endPoint: 'volumes?Filtering=free-ebooks&q=supject:computer scince');
+      List<BookModel> books = [];
+      for (var items in data['items']) {
+        books.add(BookModel.fromJson(items));
+      }
+      return right(books);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailuer.fromDioException(e));
+      } else {
+        return left(ServerFailuer(e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failuer, List<BookModel>>> fetchSimilarBooks(
+      {required String category}) async {
+    try {
+      var data = await apiService.get(
+          endPoint:
+              'volumes?Filtering=free-ebooks&Sorting=relevance&q=supject:programming');
       List<BookModel> books = [];
       for (var items in data['items']) {
         books.add(BookModel.fromJson(items));
@@ -46,4 +68,4 @@ class HomeRepoImple implements HomeRepo {
     }
   }
 }
-// https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&Sorting=newest&q=supject:programming
+// https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&Sorting=relevance&q=supject:programming
